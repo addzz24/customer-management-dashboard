@@ -1,0 +1,23 @@
+<div class="kpi-grid">
+
+  <app-card>
+    <div card-header>Total Customers</div>
+    <div card-body>{{ store.totalCustomers() }}</div>
+  </app-card>
+
+  <app-card>
+    <div card-header>Total Spend</div>
+    <div card-body>₹ {{ store.totalSpend() }}</div>
+  </app-card>
+
+  <app-card>
+    <div card-header>Completed Orders</div>
+    <div card-body>{{ store.completedOrders() }}</div>
+  </app-card>
+
+  <app-card>
+    <div card-header>Pending Orders</div>
+    <div card-body>{{ store.pendingOrders() }}</div>
+  </app-card>
+
+</div>
