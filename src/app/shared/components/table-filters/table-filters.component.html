@@ -19,7 +19,7 @@
       @switch (filter.type) {
 
         @case ('select') {
-          <mat-form-field appearance="outline" class="custom-select-height ">
+          <mat-form-field appearance="outline" class="custom-select-height">
             <mat-select [(ngModel)]="filters[filter.key]" [placeholder]="filter.label">
               @for(option of filter.options; track option) {
                 <mat-option [value]="option">{{ option }}</mat-option>

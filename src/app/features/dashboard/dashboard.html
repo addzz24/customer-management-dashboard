@@ -1,6 +1,8 @@
-
 <app-key-performance-indicator />
 
+<button (click)="openCustomerModal()" class="bg-primary text-white px-4 py-2 rounded mb-4">
+  Add Customer
+</button>
 <app-data-table
   [columns]="displayedColumns"
   [data]="customers"
@@ -8,5 +10,6 @@
   [enablePagination]="enablePagination()"
   [enableSorting]="enableSorting()"
   [enableSearch]="enableSearch()"
-  [enableFilters]="enableFilters()">
+  [enableFilters]="enableFilters()"
+>
 </app-data-table>

@@ -1,0 +1,93 @@
+<div class="p-6 w-full">
+  <h2 class="flex items-center justify-start gap-2 text-xl font-semibold mb-5 text-gray-800">
+    <mat-icon>person_add</mat-icon>
+    Add Customer
+  </h2>
+
+  <form [formGroup]="customerForm" (ngSubmit)="submit()" class="flex flex-col gap-4">
+    <div>
+      <input
+        placeholder="Name"
+        formControlName="name"
+        class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-primary outline-none"
+      />
+      <small class="text-red-500">{{ getError('name') }}</small>
+    </div>
+
+    <div>
+      <input
+        placeholder="Email"
+        formControlName="email"
+        class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-primary outline-none"
+      />
+      <small class="text-red-500">{{ getError('email') }}</small>
+    </div>
+
+    <div>
+      <input
+        placeholder="Mobile"
+        formControlName="mobile"
+        class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-primary outline-none"
+      />
+      <small class="text-red-500">{{ getError('mobile') }}</small>
+    </div>
+
+    <div>
+      <select
+        formControlName="category"
+        class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-primary outline-none"
+      >
+        <option value="">Select Category</option>
+        <option value="Travel">Travel</option>
+        <option value="Food">Food</option>
+        <option value="Shopping">Shopping</option>
+      </select>
+      <small class="text-red-500">{{ getError('category') }}</small>
+    </div>
+
+    <div>
+      <input
+        type="number"
+        placeholder="Amount"
+        formControlName="amount"
+        class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-primary outline-none"
+      />
+      <small class="text-red-500">{{ getError('amount') }}</small>
+    </div>
+
+    <div>
+      <input
+        type="date"
+        formControlName="date"
+        class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-primary outline-none"
+      />
+      <small class="text-red-500">{{ getError('date') }}</small>
+    </div>
+
+    <div>
+      <select
+        formControlName="status"
+        class="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-primary outline-none"
+      >
+        <option value="">Select Status</option>
+        <option value="Completed">Completed</option>
+        <option value="Pending">Pending</option>
+      </select>
+      <small class="text-red-500">{{ getError('status') }}</small>
+    </div>
+
+    <div class="flex justify-end gap-3 pt-2">
+      <button type="button" (click)="close()" class="px-4 py-2 border rounded-md hover:bg-gray-100">
+        Cancel
+      </button>
+
+      <button
+        type="submit"
+        [disabled]="customerForm.invalid"
+        class="px-4 py-2 bg-primary text-white rounded-md hover:opacity-90 disabled:opacity-50"
+      >
+        Add
+      </button>
+    </div>
+  </form>
+</div>
