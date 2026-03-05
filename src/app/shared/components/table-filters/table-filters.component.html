@@ -1,0 +1,46 @@
+<div class="flex items-center justify-center gap-2">
+
+  <button [matMenuTriggerFor]="filterMenu"
+    class="h-10 px-4 text-sm rounded-md border text-white border-gray-300 bg-primary hover:bg-gray-100 hover:text-black transition">
+    Filter
+  </button>
+
+  <button (click)="resetFilters()"
+    class="h-10 px-4 text-sm rounded-md border text-white border-gray-300 bg-primary hover:bg-gray-100 hover:text-black transition">
+    Reset
+  </button>
+
+</div>
+
+
+<mat-menu #filterMenu="matMenu" class="p-4">
+  <div class="flex flex-col gap-3 w-64 p-2" (click)="$event.stopPropagation()">
+    @for (filter of filtersConfig; track filter.key) {
+      @switch (filter.type) {
+        @case ('select') {
+          <mat-form-field appearance="outline" class="custom-select-height ">
+            <mat-select [(ngModel)]="filters[filter.key]" [placeholder]="filter.label">
+              @for(option of filter.options; track option) {
+              <mat-option [value]="option">{{ option }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        }
+        @case ('date') {
+          <input type="date" [(ngModel)]="filters[filter.key]" class="h-10 px-3 rounded-md border border-gray-300" />
+        }
+        @case ('text') {
+          <input type="text" [(ngModel)]="filters[filter.key]" [placeholder]="filter.label"
+            class="h-10 px-3 rounded-md border border-gray-300" />
+        }
+      }
+    }
+  </div>
+
+
+  <button (click)="applyFilters()"
+    class="w-full h-10 mt-2 text-sm rounded-md border text-white border-gray-300 bg-primary hover:bg-gray-100 hover:text-black transition">
+    Apply
+  </button>
+
+</mat-menu>

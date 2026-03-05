@@ -1,4 +1,4 @@
-import { Customer } from '../../core/models/customer.model';
+import { Customer } from '../../core/models/model';
 
 export const dashboardMethods = (store: any) => ({
   /* ADD CUSTOMER */

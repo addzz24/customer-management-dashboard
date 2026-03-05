@@ -1,3 +1,10 @@
 
   <app-key-performance-indicator />
-  <app-table />
+
+<app-data-table
+  [columns]="displayedColumns"
+  [data]="customers"
+  [filtersConfig]="filtersConfig"
+  [enablePagination]="true"
+  [enableSorting]="true">
+</app-data-table>

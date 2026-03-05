@@ -71,12 +71,13 @@ body {
     width: 100%;
   }
 
-  .mat-mdc-header-cell {
-    font-weight: 600;
-  }
-
   .mat-mdc-row:hover {
     background: #f9fafb;
+  }
+
+  .mat-mdc-header-cell {
+    font-weight: 700 !important;
+    letter-spacing: 0.03em;
   }
 
   .mat-mdc-select-value {
@@ -116,7 +117,8 @@ body {
   }
 
   input[type='date'],
-  input[type='text'] {
-    color: var(--color-muted-foreground);
+  input[type='text'],
+  select {
+    color: var(--color-black);
   }
 }
