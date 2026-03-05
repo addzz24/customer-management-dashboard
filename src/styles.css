@@ -1,1 +1,69 @@
 @import 'tailwindcss';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Poppins, 'Helvetica Neue', sans-serif;
+}
+
+@theme {
+
+  /* Colors */
+  --primary: #e11d48;
+  --background: #0a0a0a;
+  --muted-foreground: #a3a3a3;
+
+  --color-gray-200: #ebe6e7;
+
+  /* CSS variables */
+  --color-primary: var(--primary);
+  --color-primary-background: var(--background);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --text-muted-foreground-50: color-mix(in oklab, var(--color-muted-foreground) 50%, transparent);
+}
+
+@layer components {
+
+  .sidebar-bg {
+    @apply text-white;
+    background-color: var(--color-primary-background);
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-2 rounded-md cursor-pointer transition-colors text-sm font-semibold;
+    color: var(--color-muted-foreground);
+    mat-icon {
+      color: var(--color-white) !important;
+    }
+
+    :hover {
+      color: var(--color-primary);
+    }
+  }
+
+  .sidebar-header {
+    color: var(--text-muted-foreground-50) !important;
+  }
+
+  .sidebar-active {
+    @apply font-bold;
+    color: var(--color-primary);
+  }
+
+  .sidebar-icon {
+    font-size: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .sidebar-toggle-icon {
+    font-size: 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+}

@@ -11,6 +11,17 @@ import { DashboardStore } from '../../store/dashboard/dashboard.store';
 export class KeyPerformanceIndicator {
   store = inject(DashboardStore);
 
+  performanceIndicators: any;
+
   constructor(){
+    this.performanceIndicators = [
+      { name: 'Total Customers', value: this.store.totalCustomers() },
+      { name: 'Total Spend', value: `${this.store.totalSpend()} ₹` },
+      { name: 'Completed Orders', value: this.store.completedOrders() },
+      { name: 'Pending Orders', value: this.store.pendingOrders() }
+    ];
   }
+
+
+
 }

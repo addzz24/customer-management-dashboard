@@ -10,5 +10,15 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full'
+  },
+  {
+    path:'analytics',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path:'reports',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
   }
 ];
