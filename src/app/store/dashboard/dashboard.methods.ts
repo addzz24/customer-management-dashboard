@@ -1,4 +1,5 @@
 import { Customer } from '../../core/models/model';
+import { INITIAL_CUSTOMERS } from '../../shared/constants/constants';
 
 export const dashboardMethods = (store: any) => ({
   /* ADD CUSTOMER */
@@ -47,38 +48,7 @@ export const dashboardMethods = (store: any) => ({
       return;
     }
 
-    const initialCustomers: Customer[] = [
-      {
-        id: crypto.randomUUID(),
-        name: 'John Doe',
-        email: 'john@test.com',
-        mobile: '9999999999',
-        category: 'Travel',
-        amount: 5000,
-        date: '2026-03-04',
-        status: 'Completed',
-      },
-      {
-        id: crypto.randomUUID(),
-        name: 'Alice Smith',
-        email: 'alice@test.com',
-        mobile: '8888888888',
-        category: 'Food',
-        amount: 2000,
-        date: '2026-03-02',
-        status: 'Pending',
-      },
-      {
-        id: crypto.randomUUID(),
-        name: 'Robert Brown',
-        email: 'robert@test.com',
-        mobile: '7777777777',
-        category: 'Shopping',
-        amount: 3200,
-        date: '2026-03-01',
-        status: 'Completed',
-      },
-    ];
+    const initialCustomers: Customer[] = INITIAL_CUSTOMERS;
 
     store.customers.set(initialCustomers);
     localStorage.setItem('customers', JSON.stringify(initialCustomers));
