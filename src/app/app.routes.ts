@@ -1,24 +1,17 @@
 import { Routes } from '@angular/router';
-import { Dashboard } from './components/dashboard/dashboard';
+import { MainLayout } from './layout/main-layout/main-layout';
 
 export const routes: Routes = [
   {
-    path: 'dashboard',
-    component: Dashboard
-  },
-   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  },
-  {
-    path:'analytics',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  },
-  {
-    path:'reports',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
+    component: MainLayout,
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./features/dashboard/dashboard')
+            .then(m => m.Dashboard)
+      }
+    ]
   }
 ];

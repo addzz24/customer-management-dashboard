@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MenuItem } from '../../types/dashboard.types';
 import { Router } from '@angular/router';
+import { MenuItem } from '../../core/types/dashboard.types';
 
 @Component({
   selector: 'app-sidebar',

@@ -1,4 +1,4 @@
-import { Customer } from "../../shared/models/customer.model";
+import { Customer } from "../../core/models/customer.model";
 
 export interface Filters {
   search: string;

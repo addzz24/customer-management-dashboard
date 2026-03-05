@@ -1,4 +1,4 @@
-import { Customer } from "../../shared/models/customer.model";
+import { Customer } from "../../core/models/customer.model";
 
 export const dashboardMethods = (store: any) => ({
 
@@ -41,7 +41,6 @@ export const dashboardMethods = (store: any) => ({
   },
 
   /* LOAD DATA FROM STORAGE */
-
   loadCustomers() {
     const data = localStorage.getItem('customers')
     if (data) {
