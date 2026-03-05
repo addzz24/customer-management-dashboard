@@ -1,8 +1,33 @@
-<div class="flex justify-between gap-6 align-middle">
-  @for (indicator of performanceIndicators; track $index) {
-    <app-card>
-      <div card-header>{{ indicator.name }}</div>
-      <div card-body>{{ indicator.value }}</div>
+<div class="flex flex-wrap gap-6 mt-6">
+  @for (indicator of performanceIndicators; track indicator.name) {
+    <app-card class="flex-1 min-w-[260px]">
+      <!-- ICON -->
+      <mat-icon card-icon class="text-2xl">
+        {{ indicator.icon }}
+      </mat-icon>
+
+      <!-- TITLE -->
+      <div card-header>
+        {{ indicator.name }}
+      </div>
+
+      <!-- VALUE -->
+      <div card-body>
+        {{ indicator.value }}
+      </div>
+
+      <!-- TREND -->
+      <div
+        card-trend
+        class="flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold"
+        [ngClass]="indicator.trend > 0 ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'"
+      >
+        <mat-icon class="text-base">
+          {{ indicator.trend > 0 ? 'arrow_upward' : 'arrow_downward' }}
+        </mat-icon>
+
+        {{ indicator.trend | number: '1.2-2' }}%
+      </div>
     </app-card>
   }
 </div>

@@ -1,11 +1,18 @@
-<div class="card">
-  <div class="card-header">
+<div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition
+flex flex-col gap-6 min-h-45"
+>
+  <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-gray-100 text-gray-700">
+    <ng-content select="[card-icon]"></ng-content>
+  </div>
+
+  <div class="text-gray-500 text-md font-medium">
     <ng-content select="[card-header]"></ng-content>
   </div>
-  <div class="card-body">
-    <ng-content select="[card-body]"></ng-content>
-  </div>
-  <div class="card-footer">
-    <ng-content select="[card-footer]"></ng-content>
+
+  <div class="flex items-center justify-between">
+    <div class="text-2xl font-bold text-gray-800">
+      <ng-content select="[card-body]"></ng-content>
+    </div>
+    <ng-content select="[card-trend]"></ng-content>
   </div>
 </div>
