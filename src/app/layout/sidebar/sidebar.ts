@@ -17,7 +17,7 @@ export class Sidebar {
   menuItems: MenuItem[] = [
     { icon: 'dashboard', label: 'Dashboard', route: '/dashboard' },
     { icon: 'analytics', label: 'Analytics', route: '/analytics' },
-    { icon: 'article', label: 'Reports', route: '/reports' },
+    { icon: 'person', label: 'Customers', route: '/customers' },
   ];
 
   router = inject(Router);

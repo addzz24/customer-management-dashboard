@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html,
 body {
@@ -11,24 +12,22 @@ body {
 }
 
 @theme {
-
   /* Colors */
   --primary: #e11d48;
   --background: #0a0a0a;
   --muted-foreground: #a3a3a3;
-
+  --muted-background: #262626;
   --color-gray-200: #ebe6e7;
 
   /* CSS variables */
   --color-primary: var(--primary);
   --color-primary-background: var(--background);
   --color-muted-foreground: var(--muted-foreground);
-
+  --color-muted-background-10: var(--muted-background);
   --text-muted-foreground-50: color-mix(in oklab, var(--color-muted-foreground) 50%, transparent);
 }
 
 @layer components {
-
   .sidebar-bg {
     @apply text-white;
     background-color: var(--color-primary-background);
@@ -36,6 +35,7 @@ body {
 
   .sidebar-item {
     @apply flex items-center gap-3 px-4 py-2 rounded-md cursor-pointer transition-colors text-sm font-semibold;
+
     color: var(--color-muted-foreground);
     mat-icon {
       color: var(--color-white) !important;
@@ -65,5 +65,58 @@ body {
     font-size: 28px !important;
     width: 28px !important;
     height: 28px !important;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .mat-mdc-header-cell {
+    font-weight: 600;
+  }
+
+  .mat-mdc-row:hover {
+    background: #f9fafb;
+  }
+
+  .mat-mdc-select-value {
+    font-size: 14px;
+  }
+
+  .mat-mdc-select-arrow {
+    margin-top: -2px;
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  input:focus {
+    @apply focus:outline-none;
+  }
+
+  .custom-select-height {
+    --mat-form-field-container-height: 2.5rem;
+    --mat-form-field-container-vertical-padding: 0.5rem;
+
+    .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+      .mat-mdc-floating-label {
+      transform: translateY(-1.1em) scale(0.75);
+    }
+
+    .mat-mdc-form-field-infix {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+
+  input[type='date'],
+  input[type='text'] {
+    color: var(--color-muted-foreground);
   }
 }
