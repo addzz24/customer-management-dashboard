@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, output, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -20,12 +20,21 @@ import { TableFilterConfig } from '../../../core/types/types';
 })
 export class TableFiltersComponent {
 
-  @Input() filtersConfig: TableFilterConfig[] = [];
-
-  @Output() apply = new EventEmitter<any>();
-  @Output() reset = new EventEmitter<void>();
+  /**
+   * DESCRIPTION:
+   * This component is a reusable filter component that can be used across the application.
+   * It takes in the following input:
+   * - filtersConfig: An array of filter configurations for the table.
+   * The component emits the applied filters through the apply output and emits a reset event through the reset output when the filters are reset.
+   */
 
   filters: any = {};
+
+  filtersConfig = input<TableFilterConfig[]>([]);
+
+  apply = output();
+  reset = output();
+
 
   applyFilters() {
     this.apply.emit(this.filters);
@@ -35,5 +44,4 @@ export class TableFiltersComponent {
     this.filters = {};
     this.reset.emit();
   }
-
 }

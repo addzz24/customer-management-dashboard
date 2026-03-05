@@ -24,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TableFiltersComponent } from '../table-filters/table-filters.component';
 import { TableFilters } from '../../../core/types/types';
 import { DashboardStore } from '../../../store/dashboard/dashboard.store';
+import { Customer } from '../../../core/models/model';
 
 @Component({
   selector: 'app-data-table',
@@ -64,7 +65,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
    */
 
   columns = input<string[]>([]);
-  data = input<any[]>([]);
+  data = input<Customer[]>([]);
   tableColumns = input<string[]>([]);
   filtersConfig = input<any[]>([]);
   enablePagination = input();
@@ -72,7 +73,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   enableSearch = input();
   enableFilters = input();
 
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new MatTableDataSource<Customer>();
   filters: TableFilters = {};
 
   store = inject(DashboardStore);

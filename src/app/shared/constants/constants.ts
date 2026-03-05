@@ -1,4 +1,6 @@
-export const DISPLAYED_COLUMNS = [
+import { TableFilterConfig } from "../../core/types/types";
+
+export const DISPLAYED_COLUMNS: string[] = [
   'name',
   'email',
   'mobile',
@@ -9,7 +11,7 @@ export const DISPLAYED_COLUMNS = [
   'actions',
 ];
 
-export const FILTERS_CONFIG = [
+export const FILTERS_CONFIG: TableFilterConfig[] = [
   {
     key: 'status',
     label: 'Status',

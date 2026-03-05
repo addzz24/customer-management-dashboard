@@ -5,6 +5,7 @@ import { DataTableComponent } from '../../shared/components/data-table/data-tabl
 import { Customer } from '../../core/models/model';
 import { DISPLAYED_COLUMNS, FILTERS_CONFIG } from '../../shared/constants/constants';
 import { sign } from 'crypto';
+import { TableFilterConfig } from '../../core/types/types';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,8 +15,9 @@ import { sign } from 'crypto';
 })
 export class Dashboard implements OnInit {
   customers: Customer[] = [];
-  displayedColumns = DISPLAYED_COLUMNS;
-  filtersConfig = FILTERS_CONFIG;
+  displayedColumns : string[] = DISPLAYED_COLUMNS;
+  filtersConfig: TableFilterConfig[] = FILTERS_CONFIG;
+
   enablePagination = signal(true);
   enableSorting = signal(true);
   enableSearch = signal(true);
