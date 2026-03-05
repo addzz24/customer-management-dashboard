@@ -1,62 +1,33 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { KeyPerformanceIndicator } from '../key-performance-indicator/key-performance-indicator';
 import { DashboardStore } from '../../store/dashboard/dashboard.store';
-import { DataTableComponent } from "../../shared/components/data-table/data-table.component";
+import { DataTableComponent } from '../../shared/components/data-table/data-table.component';
 import { Customer } from '../../core/models/model';
+import { DISPLAYED_COLUMNS, FILTERS_CONFIG } from '../../shared/constants/constants';
+import { sign } from 'crypto';
 
 @Component({
   selector: 'app-dashboard',
   imports: [KeyPerformanceIndicator, DataTableComponent],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
-})export class Dashboard implements OnInit {
+})
+export class Dashboard implements OnInit {
+  customers: Customer[] = [];
+  displayedColumns = DISPLAYED_COLUMNS;
+  filtersConfig = FILTERS_CONFIG;
+  enablePagination = signal(true);
+  enableSorting = signal(true);
+  enableSearch = signal(true);
+  enableFilters = signal(true);
 
   store = inject(DashboardStore);
-
-  customers: Customer[] =  [];
 
   constructor() {
     effect(() => {
       this.customers = this.store.customers();
     });
   }
-
-  displayedColumns = [
-  'name',
-  'email',
-  'mobile',
-  'category',
-  'amount',
-  'date',
-  'status',
-  'actions'
-  ];
-
-  filtersConfig = [
-    {
-      key: 'status',
-      label: 'Status',
-      type: 'select',
-      options: ['Completed', 'Pending']
-    },
-    {
-      key: 'category',
-      label: 'Category',
-      type: 'select',
-      options: ['Travel', 'Food', 'Shopping']
-    },
-    {
-      key: 'startDate',
-      label: 'Start Date',
-      type: 'date'
-    },
-    {
-      key: 'endDate',
-      label: 'End Date',
-      type: 'date'
-    }
-  ];
-
 
   ngOnInit() {
     this.store.loadCustomers();

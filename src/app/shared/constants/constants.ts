@@ -1,24 +1,35 @@
-export const FILTER_CONFIG = [
+export const DISPLAYED_COLUMNS = [
+  'name',
+  'email',
+  'mobile',
+  'category',
+  'amount',
+  'date',
+  'status',
+  'actions',
+];
+
+export const FILTERS_CONFIG = [
   {
     key: 'status',
-    type: 'select',
     label: 'Status',
-    options: ['Completed', 'Pending']
+    type: 'select',
+    options: ['Completed', 'Pending'],
   },
   {
     key: 'category',
-    type: 'select',
     label: 'Category',
-    options: ['Travel', 'Food', 'Shopping']
+    type: 'select',
+    options: ['Travel', 'Food', 'Shopping'],
   },
   {
     key: 'startDate',
+    label: 'Start Date',
     type: 'date',
-    label: 'Start Date'
   },
   {
     key: 'endDate',
+    label: 'End Date',
     type: 'date',
-    label: 'End Date'
-  }
+  },
 ];

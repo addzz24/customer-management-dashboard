@@ -1,16 +1,19 @@
 <div class="bg-white rounded-lg shadow-2xl p-6 mt-6">
+  <!-- Search and filter section -->
   <div class="flex justify-between gap-4 mb-4">
-    <app-table-search (searchChange)="onSearch($event)"></app-table-search>
-    <app-table-filters
-      [filtersConfig]="filtersConfig"
-      (apply)="onApplyFilters($event)"
-      (reset)="resetFilters()"
-    ></app-table-filters>
+
+    <app-table-search [class.hidden]="!enableSearch()" (searchChange)="onSearch($event)"></app-table-search>
+
+    <app-table-filters [class.hidden]="!enableFilters()" [filtersConfig]="filtersConfig()"
+                        (apply)="onApplyFilters($event)"(reset)="resetFilters()">
+    </app-table-filters>
   </div>
 
   <div class="overflow-x-auto w-full">
+    <!-- Data table -->
     <table mat-table [dataSource]="dataSource" matSort>
-      @for (column of columns; track column) {
+
+      @for (column of columns(); track column) {
         <ng-container [matColumnDef]="column">
           <th mat-header-cell *matHeaderCellDef mat-sort-header class="font-bold">
             {{ column | titlecase }}
@@ -26,16 +29,19 @@
         </ng-container>
       }
 
-      <tr mat-header-row *matHeaderRowDef="columns"></tr>
-      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      <tr mat-header-row *matHeaderRowDef="columns()"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns()"></tr>
     </table>
   </div>
 
-  <!-- Paginator -->
-  <div class="flex justify-between items-center">
+  <!-- Pagination and entry count -->
+  <div class="flex justify-between items-center mt-4">
     <div class="text-sm text-gray-600">
       Showing {{ dataSource.filteredData.length }} of {{ dataSource.data.length }} entries
     </div>
-    <mat-paginator class="mt-4" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+
+    @if (enablePagination()) {
+      <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+    }
   </div>
 </div>

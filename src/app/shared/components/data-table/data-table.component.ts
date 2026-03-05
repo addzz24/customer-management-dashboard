@@ -1,4 +1,13 @@
-import { Component, Input, ViewChild, AfterViewInit, effect, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  AfterViewInit,
+  effect,
+  inject,
+  OnInit,
+  input,
+} from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
@@ -38,12 +47,30 @@ import { DashboardStore } from '../../../store/dashboard/dashboard.store';
 })
 export class DataTableComponent implements AfterViewInit, OnInit {
 
-  @Input() columns: string[] = [];
-  @Input() data: any[] = [];
-  @Input() tableColumns: any[] = [];
-  @Input() filtersConfig: any[] = [];
-  @Input() enablePagination = true;
-  @Input() enableSorting = true;
+  /**
+   * DESCRIPTION:
+   * This component is a reusable data table that can be used across the application.
+   * It supports pagination, sorting, searching, and filtering. The component takes in the following inputs:
+   * - columns: An array of column names to be displayed in the table.
+   * - data: An array of data objects to be displayed in the table.
+   * - tableColumns: An array of column names to be used for sorting and filtering.
+   * - filtersConfig: An array of filter configurations for the table.
+   * - enablePagination: A boolean to enable or disable pagination.
+   * - enableSorting: A boolean to enable or disable sorting.
+   * - enableSearch: A boolean to enable or disable searching.
+   * - enableFilters: A boolean to enable or disable filters.
+   * The component uses Angular Material's MatTable, MatPaginator, and MatSort for the table functionality.
+   * It also uses custom components TableSearchComponent and TableFiltersComponent for searching and filtering functionality respectively.
+   */
+
+  columns = input<string[]>([]);
+  data = input<any[]>([]);
+  tableColumns = input<string[]>([]);
+  filtersConfig = input<any[]>([]);
+  enablePagination = input();
+  enableSorting = input();
+  enableSearch = input();
+  enableFilters = input();
 
   dataSource = new MatTableDataSource<any>();
   filters: TableFilters = {};
@@ -53,36 +80,17 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-
-
-
   ngOnInit() {
-    this.dataSource.data = this.data;
-    this.dataSource.filterPredicate = (data: any, filter: string) => {
-      const f = JSON.parse(filter);
-
-      const searchMatch =
-        data.name.toLowerCase().includes(f.search || '') ||
-        data.email.toLowerCase().includes(f.search || '');
-
-      const statusMatch = !f.status || data.status === f.status;
-
-      const categoryMatch = !f.category || data.category === f.category;
-
-      const dateMatch =
-        (!f.startDate || new Date(data.date) >= new Date(f.startDate)) &&
-        (!f.endDate || new Date(data.date) <= new Date(f.endDate));
-
-      return searchMatch && statusMatch && categoryMatch && dateMatch;
-    };
+    this.dataSource.data = this.data();
+    this.dataPredicate();
   }
 
   ngAfterViewInit() {
-    if (this.enablePagination) {
+    if (this.enablePagination()) {
       this.dataSource.paginator = this.paginator;
     }
 
-    if (this.enableSorting) {
+    if (this.enableSorting()) {
       this.dataSource.sort = this.sort;
     }
   }
@@ -121,5 +129,31 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
   deleteCustomer(id: string) {
     this.store.deleteCustomer(id);
+  }
+
+  dataPredicate() {
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const f = JSON.parse(filter);
+      const searchMatch = Object.values(data)
+        .join(' ')
+        .toLowerCase()
+        .includes((f.search || '').toLowerCase());
+
+      const filterMatch = Object.keys(f).every((key) => {
+        if (key === 'search') return true;
+
+        if (!f[key]) return true;
+
+        if (key.toLowerCase().includes('date')) {
+          const rowDate = new Date(data.date);
+          const filterDate = new Date(f[key]);
+          return key === 'startDate' ? rowDate >= filterDate : rowDate <= filterDate;
+        }
+
+        return data[key] === f[key];
+      });
+
+      return searchMatch && filterMatch;
+    };
   }
 }
