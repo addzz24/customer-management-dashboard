@@ -7,6 +7,7 @@ import {
   inject,
   OnInit,
   input,
+  signal,
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -47,7 +48,6 @@ import { Customer } from '../../../core/models/model';
   templateUrl: './data-table.component.html',
 })
 export class DataTableComponent implements AfterViewInit, OnInit {
-
   /**
    * DESCRIPTION:
    * This component is a reusable data table that can be used across the application.
@@ -75,11 +75,19 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
   dataSource = new MatTableDataSource<Customer>();
   filters: TableFilters = {};
+  startIndex = signal(0);
+  endIndex = signal(0);
 
   store = inject(DashboardStore);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  constructor() {
+    effect(() => {
+      this.dataSource.data = this.data();
+    });
+  }
 
   ngOnInit() {
     this.dataSource.data = this.data();
@@ -89,6 +97,11 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     if (this.enablePagination()) {
       this.dataSource.paginator = this.paginator;
+
+      this.updatePageInfo();
+      this.paginator.page.subscribe(() => {
+        this.updatePageInfo();
+      });
     }
 
     if (this.enableSorting()) {
@@ -156,5 +169,17 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
       return searchMatch && filterMatch;
     };
+  }
+
+  updatePageInfo() {
+    const pageIndex = this.paginator.pageIndex;
+    const pageSize = this.paginator.pageSize;
+
+    const start = pageIndex * pageSize + 1;
+
+    const end = Math.min((pageIndex + 1) * pageSize, this.dataSource.filteredData.length);
+
+    this.startIndex.set(start);
+    this.endIndex.set(end);
   }
 }

@@ -37,7 +37,7 @@
   <!-- Pagination and entry count -->
   <div class="flex justify-between items-center mt-4">
     <div class="text-sm text-gray-600">
-      Showing {{ dataSource.filteredData.length }} of {{ dataSource.data.length }} entries
+      Showing {{ startIndex() }} – {{ endIndex() }} of {{ dataSource.filteredData.length }} entries
     </div>
 
     @if (enablePagination()) {
