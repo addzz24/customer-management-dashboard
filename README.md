@@ -254,6 +254,7 @@ npm test
 ------------------------------------------------------------------------
 
 # User Interface Preview 
+
 ![UI Preview 1](public/assets/images/preview1.png)
 
 ![UI Preview 2](public/assets/images/preview2.png)
@@ -271,3 +272,16 @@ npm test
 -   More lazy loaded routes for side nav
 -   Export to Excel / CSV
 -   Unit Test Coverage Improvement
+
+
+------------------------------------------------------------------------
+# Assumptions Made
+
+Assumptions Made
+
+- No backend API provided, so data persistence is implemented using localStorage.
+- Mock customer data is loaded initially to populate charts and KPIs.
+- Pagination and sorting are handled on the client side.
+- Chart interactions update table filters through a shared Signal Store.
+- Charts automatically update when data or filters change.
+- Validation rules are implemented as specified in the assignment.
