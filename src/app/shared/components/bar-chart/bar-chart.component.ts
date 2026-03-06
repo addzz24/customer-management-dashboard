@@ -9,10 +9,10 @@ import { BarChartData } from '../../../core/types/types';
   styleUrl: './bar-chart.component.css',
 })
 export class BarChartComponent {
-  @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
-
   data = input<BarChartData[]>([]);
   categoryClick = output<string>();
+
+  @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
 
   constructor() {
     effect(() => {

@@ -9,11 +9,14 @@ import { LineChartData } from '../../../core/types/types';
   styleUrl: './line-chart.component.css',
 })
 export class LineChartComponent {
-  @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
 
   data = input<LineChartData[]>([]);
   dateClick = output<string>();
+
   selectedDate: string | null = null;
+
+    @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
+
 
   constructor() {
     effect(() => {

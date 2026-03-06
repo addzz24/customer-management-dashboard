@@ -9,10 +9,10 @@ import { PieChartData } from '../../../core/types/types';
   styleUrl: './pie-chart.component.css',
 })
 export class PieChartComponent {
-  @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
-
   data = input<PieChartData[]>([]);
   statusClick = output<string>();
+
+  @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
 
   constructor() {
     effect(() => {
@@ -73,7 +73,7 @@ export class PieChartComponent {
       })
 
       .on('mousemove', (event: any) => {
-         tooltip.style('left', event.pageX + 10 + 'px').style('top', event.pageY - 50 + 'px');
+        tooltip.style('left', event.pageX + 10 + 'px').style('top', event.pageY - 50 + 'px');
       })
 
       .on('mouseleave', () => {
