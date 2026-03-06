@@ -253,6 +253,16 @@ npm test
 
 ------------------------------------------------------------------------
 
+# User Interface Preview 
+![UI Preview 1](public/assets/images/preview1.png)
+
+![UI Preview 2](public/assets/images/preview2.png)
+
+![UI Preview 3](public/assets/images/preview3.png)
+
+
+------------------------------------------------------------------------
+
 # Future Improvements
 
 -   Authentication & Role Based Access
