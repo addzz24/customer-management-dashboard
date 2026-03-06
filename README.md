@@ -261,6 +261,23 @@ npm test
 
 ![UI Preview 3](public/assets/images/preview3.png)
 
+![UI Preview 4](public/assets/images/preview4.png)
+
+![UI Preview 5](public/assets/images/preview5.png)
+
+![UI Preview 6](public/assets/images/preview6.png)
+
+
+------------------------------------------------------------------------
+# Assumptions Made
+
+- No backend API provided, so data persistence is implemented using localStorage.
+- Mock customer data is loaded initially to populate charts and KPIs.
+- Pagination and sorting are handled on the client side.
+- Chart interactions update table filters through a shared Signal Store.
+- Charts automatically update when data or filters change.
+- Validation rules are implemented as specified in the assignment.
+
 
 ------------------------------------------------------------------------
 
@@ -274,14 +291,3 @@ npm test
 -   Unit Test Coverage Improvement
 
 
-------------------------------------------------------------------------
-# Assumptions Made
-
-Assumptions Made
-
-- No backend API provided, so data persistence is implemented using localStorage.
-- Mock customer data is loaded initially to populate charts and KPIs.
-- Pagination and sorting are handled on the client side.
-- Chart interactions update table filters through a shared Signal Store.
-- Charts automatically update when data or filters change.
-- Validation rules are implemented as specified in the assignment.
