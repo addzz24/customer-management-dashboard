@@ -1,4 +1,10 @@
+## Live Demo
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/addzz24/customer-management-dashboard?file=README.md)
+
 # Customer Management Dashboard
+
+Angular + D3 interactive dashboard for customer analytics.
 
 A modern **Customer Management Dashboard** built with **Angular 20**, designed to
 demonstrate scalable frontend architecture, reusable UI components, and
