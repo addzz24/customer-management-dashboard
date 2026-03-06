@@ -88,7 +88,6 @@ export class LineChartComponent {
       .attr('stroke-width', 2)
       .attr('d', line as any);
 
-    // X Axis
     svg
       .append('g')
       .attr('transform', `translate(0, ${height - margin.bottom})`)
@@ -96,7 +95,6 @@ export class LineChartComponent {
       .selectAll('text')
       .style('font-size', '11px');
 
-    // Y Axis
     svg
       .append('g')
       .attr('transform', `translate(${margin.left},0)`)

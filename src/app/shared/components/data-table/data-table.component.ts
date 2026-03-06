@@ -26,7 +26,7 @@ import { TableSearchComponent } from '../table-search/table-search.component';
 
 import { TableFiltersComponent } from '../table-filters/table-filters.component';
 import { TableFilters } from '../../../core/types/types';
-import { DashboardStore } from '../../../store/dashboard/dashboard.store';
+import { GlobalStore } from '../../../store/global/global.store'
 import { Customer } from '../../../core/models/model';
 
 @Component({
@@ -85,7 +85,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   startIndex = signal(0);
   endIndex = signal(0);
 
-  store = inject(DashboardStore);
+  store = inject(GlobalStore);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

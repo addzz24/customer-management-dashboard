@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MainLayout } from './layout/main-layout/main-layout';
+import { MainLayout } from './layout/main-layout/main-layout.component';
 
 export const routes: Routes = [
   {
@@ -9,8 +9,8 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadComponent: () =>
-          import('./features/dashboard/dashboard')
-            .then(m => m.Dashboard)
+          import('./features/dashboard/dashboard.component')
+            .then(m => m.DashboardComponent)
       }
     ]
   }

@@ -1,7 +1,7 @@
 import { Customer } from '../../core/models/model';
 import { INITIAL_CUSTOMERS } from '../../shared/constants/customers';
 
-export const dashboardMethods = (store: any) => ({
+export const globalMethods = (store: any) => ({
   /* ADD CUSTOMER */
   addCustomer(customer: Customer) {
     store.customers.update((list: Customer[]) => {
@@ -39,7 +39,7 @@ export const dashboardMethods = (store: any) => ({
     });
   },
 
-  /* LOAD DATA FROM STORAGE */
+  /* LOADING INITIAL DATA FROM STORAGE */
   loadCustomers() {
     const stored = localStorage.getItem('customers');
 

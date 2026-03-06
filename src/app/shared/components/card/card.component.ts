@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-card',
-  templateUrl: './card.html',
-  styleUrl: './card.css',
+  templateUrl: './card.component.html',
+  styleUrl: './card.component.css',
   standalone: true
 })
-export class Card {
+export class CardComponent {
 
 }

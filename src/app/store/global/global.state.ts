@@ -1,4 +1,4 @@
-import { Customer } from "../../core/models/model";
+import { Customer } from '../../core/models/model';
 
 export interface Filters {
   search: string;
@@ -8,18 +8,18 @@ export interface Filters {
   endDate: string | null;
 }
 
-export interface DashboardState {
+export interface GlobalState {
   customers: Customer[];
   filters: Filters;
 }
 
-export const initialDashboardState: DashboardState = {
+export const initialGlobalState: GlobalState = {
   customers: [],
   filters: {
     search: '',
     status: null,
     category: null,
     startDate: null,
-    endDate: null
-  }
+    endDate: null,
+  },
 };

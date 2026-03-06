@@ -1,18 +1,18 @@
 import { Component, effect, inject } from '@angular/core';
-import { Card } from '../../shared/components/card/card';
-import { DashboardStore } from '../../store/dashboard/dashboard.store';
+import { CardComponent } from '../../shared/components/card/card.component';
+import { GlobalStore } from '../../store/global/global.store';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-key-performance-indicator',
-  imports: [Card, CommonModule, MatIconModule],
-  templateUrl: './key-performance-indicator.html',
-  styleUrl: './key-performance-indicator.css',
+  imports: [CardComponent, CommonModule, MatIconModule],
+  templateUrl: './key-performance-indicator.component.html',
+  styleUrl: './key-performance-indicator.component.css',
   standalone: true,
 })
-export class KeyPerformanceIndicator {
-  store = inject(DashboardStore);
+export class KeyPerformanceIndicatorComponent {
+  store = inject(GlobalStore);
 
   performanceIndicators: any;
 

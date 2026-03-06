@@ -1,6 +1,6 @@
 import { computed } from '@angular/core';
 
-export const dashboardComputed = (state: any) => ({
+export const globalComputed = (state: any) => ({
   /**
    * Kpi Values
    */

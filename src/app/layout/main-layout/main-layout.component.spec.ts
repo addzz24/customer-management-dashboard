@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KeyPerformanceIndicator } from './key-performance-indicator';
+import { MainLayout } from './main-layout.component';
 
-describe('KeyPerformanceIndicator', () => {
-  let component: KeyPerformanceIndicator;
-  let fixture: ComponentFixture<KeyPerformanceIndicator>;
+describe('MainLayout', () => {
+  let component: MainLayout;
+  let fixture: ComponentFixture<MainLayout>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [KeyPerformanceIndicator]
+      imports: [MainLayout]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(KeyPerformanceIndicator);
+    fixture = TestBed.createComponent(MainLayout);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,5 @@
 import { Component, effect, inject, OnInit, signal } from '@angular/core';
-import { KeyPerformanceIndicator } from '../key-performance-indicator/key-performance-indicator';
-import { DashboardStore } from '../../store/dashboard/dashboard.store';
+import {  GlobalStore } from '../../store/global/global.store';
 import { DataTableComponent } from '../../shared/components/data-table/data-table.component';
 import { Customer } from '../../core/models/model';
 import { DISPLAYED_COLUMNS, FILTERS_CONFIG } from '../../shared/constants/constants';
@@ -10,20 +9,21 @@ import { CustomerFormComponent } from '../customer-form/customer-form.component'
 import { PieChartComponent } from '../../shared/components/pie-chart/pie-chart.component';
 import { BarChartComponent } from '../../shared/components/bar-chart/bar-chart.component';
 import { LineChartComponent } from '../../shared/components/line-chart/line-chart.component';
+import { KeyPerformanceIndicatorComponent } from '../key-performance-indicator/key-performance-indicator.component';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    KeyPerformanceIndicator,
+    KeyPerformanceIndicatorComponent,
     DataTableComponent,
     PieChartComponent,
     BarChartComponent,
     LineChartComponent,
   ],
-  templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css',
 })
-export class Dashboard implements OnInit {
+export class DashboardComponent implements OnInit {
   customers: Customer[] = [];
   displayedColumns: string[] = DISPLAYED_COLUMNS;
   filtersConfig: TableFilterConfig[] = FILTERS_CONFIG;
@@ -38,7 +38,7 @@ export class Dashboard implements OnInit {
   public spendByStatus = () => this.store.spendByStatus();
   public spendTrendByDate = () => this.store.spendTrendByDate();
 
-  private store = inject(DashboardStore);
+  private store = inject(GlobalStore);
   private dialog = inject(MatDialog);
 
   constructor() {
