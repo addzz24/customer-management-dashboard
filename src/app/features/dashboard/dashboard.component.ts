@@ -41,13 +41,12 @@ export class DashboardComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      this.customers = this.store.customers();
+      this.customers = this.store.filteredCustomers();
     });
   }
 
   ngOnInit() {
     this.store.loadCustomers();
-    console.log(this.store.filteredCustomers, this.store.customers())
   }
 
   openCustomerModal() {

@@ -26,7 +26,7 @@ import { TableSearchComponent } from '../table-search/table-search.component';
 
 import { TableFiltersComponent } from '../table-filters/table-filters.component';
 import { TableFilters } from '../../../core/types/types';
-import { GlobalStore } from '../../../store/global/global.store';
+import { GlobalStore } from '../../../store/global/global.store'
 import { Customer } from '../../../core/models/model';
 
 @Component({
@@ -92,7 +92,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
   constructor() {
     effect(() => {
-      this.dataSource.data = this.store.filteredCustomers();
+      this.dataSource.data = this.data();
     });
 
     effect(() => {
@@ -103,7 +103,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
-    this.dataSource.data = this.store.filteredCustomers();
+    this.dataSource.data = this.data();
     this.dataPredicate();
   }
 
