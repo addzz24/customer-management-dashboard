@@ -11,7 +11,7 @@ import { LineChartData } from '../../../core/types/types';
 export class LineChartComponent {
   @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
 
-  data = input<LineChartData[]>();
+  data = input<LineChartData[]>([]);
   dateClick = output<string>();
   selectedDate: string | null = null;
 

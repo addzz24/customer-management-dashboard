@@ -27,4 +27,11 @@ export type LineChartData = {
 export type PieChartData = {
   status: string;
   amount: number;
+};
+
+export type BarChartData = {
+  category: string,
+  amount: number
 }
+
+

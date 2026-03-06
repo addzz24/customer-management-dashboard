@@ -19,7 +19,7 @@
 
   <div class="bg-white rounded-xl shadow p-4 flex-1 min-w-0">
     <h3 class="text-lg font-semibold mb-3">Spend by Category</h3>
-    <app-bar-chart [data]="spendByCategory()"></app-bar-chart>
+    <app-bar-chart [data]="spendByCategory()" (categoryClick)="onCategoryFilter($event)"></app-bar-chart>
   </div>
 </div>
 </div>
