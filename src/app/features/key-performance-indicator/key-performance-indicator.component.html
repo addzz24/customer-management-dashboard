@@ -1,22 +1,18 @@
 <div class="flex flex-wrap gap-6 mt-6">
   @for (indicator of performanceIndicators; track indicator.name) {
     <app-card class="flex-1 min-w-65">
-      <!-- ICON -->
       <mat-icon card-icon class="text-2xl">
         {{ indicator.icon }}
       </mat-icon>
 
-      <!-- TITLE -->
       <div card-header>
         {{ indicator.name }}
       </div>
 
-      <!-- VALUE -->
       <div card-body>
         {{ indicator.value }}
       </div>
 
-      <!-- TREND -->
       <div
         card-trend
         class="flex items-center gap-1 px-2 py-1 rounded-full text-sm font-semibold"
