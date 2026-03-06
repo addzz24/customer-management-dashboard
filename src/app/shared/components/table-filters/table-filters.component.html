@@ -1,47 +1,36 @@
 <div class="flex items-center justify-center gap-2">
-
-  <button [matMenuTriggerFor]="filterMenu"
-    class="h-10 px-4 text-sm rounded-md border text-white border-gray-300 bg-primary hover:bg-gray-100 hover:text-black transition">
-    Filter
+  <button [matMenuTriggerFor]="filterMenu" matTooltip="Filters" matTooltipPosition="below" class="button-primary">
+    <mat-icon>filter_alt</mat-icon>
   </button>
 
-  <button (click)="resetFilters()"
-    class="h-10 px-4 text-sm rounded-md border text-white border-gray-300 bg-primary hover:bg-gray-100 hover:text-black transition">
-    Reset
+  <button (click)="resetFilters()" class="button-primary" matTooltip="Reset Filters" matTooltipPosition="below">
+    <mat-icon>filter_alt_off</mat-icon>
   </button>
-
 </div>
-
 
 <mat-menu #filterMenu="matMenu" class="p-4">
   <div class="flex flex-col gap-3 w-64 p-2" (click)="$event.stopPropagation()">
     @for (filter of filtersConfig(); track filter.key) {
-      @switch (filter.type) {
-
-        @case ('select') {
-          <mat-form-field appearance="outline" class="custom-select-height">
-            <mat-select [(ngModel)]="filters[filter.key]" [placeholder]="filter.label">
-              @for(option of filter.options; track option) {
-                <mat-option [value]="option">{{ option }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+    @switch (filter.type) {
+    @case ('select') {
+    <mat-form-field appearance="outline" class="custom-select-height">
+      <mat-select [(ngModel)]="filters[filter.key]" [placeholder]="filter.label">
+        @for (option of filter.options; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
         }
-        @case ('date') {
-          <input type="date" [(ngModel)]="filters[filter.key]" class="h-10 px-3 rounded-md border border-gray-300" />
-        }
-        @case ('text') {
-          <input type="text" [(ngModel)]="filters[filter.key]" [placeholder]="filter.label"
-            class="h-10 px-3 rounded-md border border-gray-300" />
-        }
-      }
+      </mat-select>
+    </mat-form-field>
+    }
+    @case ('date') {
+    <input type="date" [(ngModel)]="filters[filter.key]" class="h-10 px-3 rounded-md border border-gray-300" />
+    }
+    @case ('text') {
+    <input type="text" [(ngModel)]="filters[filter.key]" [placeholder]="filter.label"
+      class="h-10 px-3 rounded-md border border-gray-300" />
+    }
+    }
     }
   </div>
 
-
-  <button (click)="applyFilters()"
-    class="w-full h-10 mt-2 text-sm rounded-md border text-white border-gray-300 bg-primary hover:bg-gray-100 hover:text-black transition">
-    Apply
-  </button>
-
+  <button (click)="applyFilters()" class="w-full button-primary">Apply</button>
 </mat-menu>

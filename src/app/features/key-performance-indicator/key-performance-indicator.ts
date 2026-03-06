@@ -34,13 +34,13 @@ export class KeyPerformanceIndicator {
 
     this.performanceIndicators = [
       {
-        name: 'Total Customers',
+        name: 'Customers',
         value: totalCustomers,
         icon: 'people',
         trend: ((completed - pending) / totalOrders) * 100,
       },
       {
-        name: 'Total Spend',
+        name: 'Spend',
         value: `${totalSpend} ₹`,
         icon: 'monetization_on',
         trend: (totalSpend / 10000) * 5,

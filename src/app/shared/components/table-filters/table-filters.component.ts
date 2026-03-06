@@ -5,6 +5,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { TableFilterConfig } from '../../../core/types/types';
+import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-table-filters',
@@ -14,8 +16,10 @@ import { TableFilterConfig } from '../../../core/types/types';
     FormsModule,
     MatMenuModule,
     MatSelectModule,
-    MatFormFieldModule
-  ],
+    MatFormFieldModule,
+    MatIconModule,
+    MatTooltipModule
+],
   templateUrl: './table-filters.component.html'
 })
 export class TableFiltersComponent {

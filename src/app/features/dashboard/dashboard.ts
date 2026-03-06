@@ -4,14 +4,16 @@ import { DashboardStore } from '../../store/dashboard/dashboard.store';
 import { DataTableComponent } from '../../shared/components/data-table/data-table.component';
 import { Customer } from '../../core/models/model';
 import { DISPLAYED_COLUMNS, FILTERS_CONFIG } from '../../shared/constants/constants';
-import { sign } from 'crypto';
 import { TableFilterConfig } from '../../core/types/types';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomerFormComponent } from '../customer-form/customer-form.component';
+import { PieChartComponent } from '../../shared/components/pie-chart/pie-chart.component';
+import { BarChartComponent } from '../../shared/components/bar-chart/bar-chart.component';
+import { LineChartComponent } from '../../shared/components/line-chart/line-chart.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [KeyPerformanceIndicator, DataTableComponent],
+  imports: [KeyPerformanceIndicator, DataTableComponent, PieChartComponent, BarChartComponent, LineChartComponent],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -25,8 +27,12 @@ export class Dashboard implements OnInit {
   enableSearch = signal(true);
   enableFilters = signal(true);
 
-  store = inject(DashboardStore);
-  dialog = inject(MatDialog);
+  public spendByCategory = () => this.store.spendByCategory();
+  public spendByStatus = () => this.store.spendByStatus();
+  public spendTrendByDate = () => this.store.spendTrendByDate();
+
+  private store = inject(DashboardStore);
+  private dialog = inject(MatDialog);
 
   constructor() {
     effect(() => {

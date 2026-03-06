@@ -1,6 +1,5 @@
 import {
   Component,
-  Input,
   ViewChild,
   AfterViewInit,
   effect,
@@ -8,20 +7,23 @@ import {
   OnInit,
   input,
   signal,
+  output,
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
-import { TableSearchComponent } from '../table-search/table-search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { TableSearchComponent } from '../table-search/table-search.component';
+
 import { TableFiltersComponent } from '../table-filters/table-filters.component';
 import { TableFilters } from '../../../core/types/types';
 import { DashboardStore } from '../../../store/dashboard/dashboard.store';
@@ -37,12 +39,13 @@ import { Customer } from '../../../core/models/model';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    TableSearchComponent,
     MatButtonModule,
     MatSelectModule,
     FormsModule,
     MatMenuModule,
     MatIconModule,
+    MatTooltipModule,
+    TableSearchComponent,
     TableFiltersComponent,
   ],
   templateUrl: './data-table.component.html',
@@ -73,8 +76,11 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   enableSearch = input();
   enableFilters = input();
 
+  addNewCustomerEvent = output();
+
   dataSource = new MatTableDataSource<Customer>();
   filters: TableFilters = {};
+
   startIndex = signal(0);
   endIndex = signal(0);
 
@@ -181,5 +187,9 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
     this.startIndex.set(start);
     this.endIndex.set(end);
+  }
+
+  openCustomerModal(){
+    this.addNewCustomerEvent.emit();
   }
 }

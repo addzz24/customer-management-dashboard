@@ -1,18 +1,34 @@
 <div class="bg-white rounded-xl shadow-2xl p-6 mt-6">
   <!-- Search and filter section -->
-  <div class="flex justify-between gap-4 mb-4">
+  <div class="flex justify-between items-center gap-4 mb-4">
+    <app-table-search
+      [class.hidden]="!enableSearch()"
+      (searchChange)="onSearch($event)"
+    ></app-table-search>
 
-    <app-table-search [class.hidden]="!enableSearch()" (searchChange)="onSearch($event)"></app-table-search>
+    <div class="flex items-center gap-2">
+      <button
+        matTooltip="Add New Customer"
+        matTooltipPosition="below"
+        class="button-primary"
+        (click)="openCustomerModal()"
+      >
+        <mat-icon>person_add</mat-icon>
+      </button>
 
-    <app-table-filters [class.hidden]="!enableFilters()" [filtersConfig]="filtersConfig()"
-                        (apply)="onApplyFilters($event)"(reset)="resetFilters()">
-    </app-table-filters>
+      <app-table-filters
+        [class.hidden]="!enableFilters()"
+        [filtersConfig]="filtersConfig()"
+        (apply)="onApplyFilters($event)"
+        (reset)="resetFilters()"
+      >
+      </app-table-filters>
+    </div>
   </div>
 
   <div class="overflow-x-auto w-full">
     <!-- Data table -->
     <table mat-table [dataSource]="dataSource" matSort>
-
       @for (column of columns(); track column) {
         <ng-container [matColumnDef]="column">
           <th mat-header-cell *matHeaderCellDef mat-sort-header class="font-bold">
@@ -36,8 +52,8 @@
 
   <!-- Pagination and entry count -->
   <div class="flex justify-between items-center mt-4">
-    <div class="text-sm text-gray-600">
-      Showing {{ startIndex() }} – {{ endIndex() }} of {{ dataSource.filteredData.length }} entries
+    <div class="text-xs text-gray-600">
+      Showing {{ endIndex() }} of {{ dataSource.filteredData.length }} entries
     </div>
 
     @if (enablePagination()) {

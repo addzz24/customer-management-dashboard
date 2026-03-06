@@ -121,4 +121,9 @@ body {
   select {
     color: var(--color-black);
   }
+
+  .button-primary {
+    @apply h-10 px-4 text-sm rounded-md border cursor-pointer text-white border-gray-300 bg-primary hover:bg-gray-100 hover:text-black transition;
+  }
+
 }

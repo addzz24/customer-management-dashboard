@@ -1,5 +1,5 @@
 import { Customer } from '../../core/models/model';
-import { INITIAL_CUSTOMERS } from '../../shared/constants/constants';
+import { INITIAL_CUSTOMERS } from '../../shared/constants/customers';
 
 export const dashboardMethods = (store: any) => ({
   /* ADD CUSTOMER */
