@@ -21,5 +21,10 @@ export type TableFilters  = {
 
 export type LineChartData = {
   date: string;
-  amount: number
+  amount: number;
+};
+
+export type PieChartData = {
+  status: string;
+  amount: number;
 }

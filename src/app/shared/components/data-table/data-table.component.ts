@@ -75,6 +75,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   enableSorting = input();
   enableSearch = input();
   enableFilters = input();
+  chartFilter = input();
 
   addNewCustomerEvent = output();
 
@@ -92,6 +93,12 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   constructor() {
     effect(() => {
       this.dataSource.data = this.data();
+    });
+
+    effect(() => {
+      const filter = this.chartFilter();
+      if (!filter) return;
+      this.onApplyFilters(filter);
     });
   }
 
@@ -189,7 +196,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     this.endIndex.set(end);
   }
 
-  openCustomerModal(){
+  openCustomerModal() {
     this.addNewCustomerEvent.emit();
   }
 }

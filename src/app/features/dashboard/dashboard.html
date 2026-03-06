@@ -5,20 +5,23 @@
 <div class="flex flex-col gap-6 mt-6 overflow-x-hidden">
   <div class="bg-white rounded-xl shadow p-4">
     <h3 class="text-lg font-semibold mb-3">Spend Trend</h3>
-    <app-line-chart [data]="spendTrendByDate()" (dateClick)="onLineChartDateClick($event)"> </app-line-chart>
+    <app-line-chart [data]="spendTrendByDate()" (dateClick)="onDateFilter($event)"> </app-line-chart>
   </div>
 
-  <div class="flex gap-6">
-    <div class="bg-white rounded-xl shadow p-4 flex-1">
-      <h3 class="text-lg font-semibold mb-3">Spend by Status</h3>
-      <app-pie-chart [data]="spendByStatus()"> </app-pie-chart>
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-4 flex-1" >
-      <h3 class="text-lg font-semibold mb-3">Spend by Category</h3>
-      <app-bar-chart [data]="spendByCategory()"> </app-bar-chart>
-    </div>
+<div class="flex gap-6 items-stretch">
+  <div class="bg-white rounded-xl shadow p-4 flex-1 min-w-0">
+    <h3 class="text-lg font-semibold mb-3">Spend by Status</h3>
+    <app-pie-chart
+      [data]="spendByStatus()"
+      (statusClick)="onStatusFilter($event)">
+    </app-pie-chart>
   </div>
+
+  <div class="bg-white rounded-xl shadow p-4 flex-1 min-w-0">
+    <h3 class="text-lg font-semibold mb-3">Spend by Category</h3>
+    <app-bar-chart [data]="spendByCategory()"></app-bar-chart>
+  </div>
+</div>
 </div>
 
 <app-data-table
@@ -29,6 +32,7 @@
   [enableSorting]="enableSorting()"
   [enableSearch]="enableSearch()"
   [enableFilters]="enableFilters()"
+  [chartFilter]="chartFilter()"
   (addNewCustomerEvent)="openCustomerModal()"
 >
 </app-data-table>

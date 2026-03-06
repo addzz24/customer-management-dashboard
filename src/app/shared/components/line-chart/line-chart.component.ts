@@ -12,7 +12,7 @@ export class LineChartComponent {
   @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
 
   data = input<LineChartData[]>();
-  dateClick = output();
+  dateClick = output<string>();
   selectedDate: string | null = null;
 
   constructor() {
@@ -23,7 +23,7 @@ export class LineChartComponent {
 
   renderChart() {
     const element = this.chartContainer.nativeElement;
-    console.log(element);
+
     element.innerHTML = '';
 
     const width = element.clientWidth;
@@ -87,6 +87,22 @@ export class LineChartComponent {
       .attr('stroke', '#6366f1')
       .attr('stroke-width', 2)
       .attr('d', line as any);
+
+    // X Axis
+    svg
+      .append('g')
+      .attr('transform', `translate(0, ${height - margin.bottom})`)
+      .call(d3.axisBottom(x))
+      .selectAll('text')
+      .style('font-size', '11px');
+
+    // Y Axis
+    svg
+      .append('g')
+      .attr('transform', `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y).ticks(5))
+      .selectAll('text')
+      .style('font-size', '11px');
 
     svg
       .selectAll('circle')

@@ -21,35 +21,83 @@ export class BarChartComponent {
   }
 
   renderChart() {
-    const element = this.chartContainer.nativeElement;
-    element.innerHTML = '';
+  const element = this.chartContainer.nativeElement;
+  element.innerHTML = '';
 
-    const width = element.clientWidth
-    const height = 300;
+  const margin = { top: 20, right: 20, bottom: 40, left: 50 };
 
-    const svg = d3.select(element).append('svg').attr('width', width).attr('height', height);
+  const width = element.clientWidth - margin.left - margin.right;
+  const height = 300 - margin.top - margin.bottom;
 
-    const x = d3
-      .scaleBand()
-      .domain(this.data.map((d) => d.category))
-      .range([0, width])
-      .padding(0.3);
+  const svg = d3
+    .select(element)
+    .append('svg')
+    .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+    .style('width', '100%')
+    .style('height', '100%')
+    .append('g')
+    .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    const y = d3
-      .scaleLinear()
-      .domain([0, d3.max(this.data, (d) => d.amount)!])
-      .nice()
-      .range([height - 20, 0]);
+  const tooltip = d3
+    .select(element)
+    .append('div')
+    .style('position', 'absolute')
+    .style('background', '#111827')
+    .style('color', 'white')
+    .style('padding', '6px 10px')
+    .style('border-radius', '6px')
+    .style('font-size', '12px')
+    .style('pointer-events', 'none')
+    .style('opacity', 0);
 
-    svg
-      .selectAll('rect')
-      .data(this.data)
-      .enter()
-      .append('rect')
-      .attr('x', (d) => x(d.category)!)
-      .attr('y', (d) => y(d.amount))
-      .attr('width', x.bandwidth())
-      .attr('height', (d) => height - 20 - y(d.amount))
-      .attr('fill', '#3b82f6');
-  }
+  const x = d3
+    .scaleBand()
+    .domain(this.data.map((d) => d.category))
+    .range([0, width])
+    .padding(0.4);
+
+  const y = d3
+    .scaleLinear()
+    .domain([0, d3.max(this.data, (d) => d.amount)!])
+    .nice()
+    .range([height, 0]);
+
+  svg
+    .selectAll('rect')
+    .data(this.data)
+    .enter()
+    .append('rect')
+    .attr('x', (d) => x(d.category)!)
+    .attr('y', (d) => y(d.amount))
+    .attr('width', x.bandwidth())
+    .attr('height', (d) => height - y(d.amount))
+    .attr('fill', '#3b82f6')
+    .attr('rx', 6)
+
+    .on('mouseover', (event: any, d: any) => {
+      tooltip
+        .style('opacity', 1)
+        .html(`${d.category}: ₹${d.amount}`);
+
+      d3.select(event.currentTarget).attr('fill', '#2563eb');
+    })
+
+    .on('mousemove', (event: any) => {
+      tooltip.style('left', event.pageX + 10 + 'px').style('top', event.pageY - 50 + 'px');
+    })
+
+    .on('mouseleave', (event: any) => {
+      tooltip.style('opacity', 0);
+      d3.select(event.currentTarget).attr('fill', '#3b82f6');
+    });
+
+  svg
+    .append('g')
+    .attr('transform', `translate(0,${height})`)
+    .call(d3.axisBottom(x));
+
+  svg
+    .append('g')
+    .call(d3.axisLeft(y).ticks(5));
+}
 }

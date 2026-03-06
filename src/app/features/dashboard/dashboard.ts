@@ -13,7 +13,13 @@ import { LineChartComponent } from '../../shared/components/line-chart/line-char
 
 @Component({
   selector: 'app-dashboard',
-  imports: [KeyPerformanceIndicator, DataTableComponent, PieChartComponent, BarChartComponent, LineChartComponent],
+  imports: [
+    KeyPerformanceIndicator,
+    DataTableComponent,
+    PieChartComponent,
+    BarChartComponent,
+    LineChartComponent,
+  ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -26,6 +32,7 @@ export class Dashboard implements OnInit {
   enableSorting = signal(true);
   enableSearch = signal(true);
   enableFilters = signal(true);
+  chartFilter = signal<any>(null);
 
   public spendByCategory = () => this.store.spendByCategory();
   public spendByStatus = () => this.store.spendByStatus();
@@ -58,7 +65,34 @@ export class Dashboard implements OnInit {
     });
   }
 
-  onLineChartDateClick(event:any){
-    console.log("onLineChartDateClick", event)
+
+  onStatusFilter(status: string) {
+    const current = this.chartFilter();
+
+    if (current?.status === status) {
+      this.chartFilter.set(null);
+    } else {
+      this.chartFilter.set({ status });
+    }
+  }
+
+  onCategoryFilter(category: string) {
+    const current = this.chartFilter();
+
+    if (current?.category === category) {
+      this.chartFilter.set(null);
+    } else {
+      this.chartFilter.set({ category });
+    }
+  }
+
+  onDateFilter(startDate: string) {
+    const current = this.chartFilter();
+
+    if (current?.startDate === startDate) {
+      this.chartFilter.set(null);
+    } else {
+      this.chartFilter.set({ startDate });
+    }
   }
 }
