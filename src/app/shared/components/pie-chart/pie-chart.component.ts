@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef, input, Input, output, ViewChild } from '@angular/core';
+import { Component, effect, ElementRef, input, output, ViewChild } from '@angular/core';
 import * as d3 from 'd3';
 import { PieChartData } from '../../../core/types/types';
 @Component({

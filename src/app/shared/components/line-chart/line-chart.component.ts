@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, effect, ViewChild, input, output } from '@angular/core';
+import { Component, ElementRef, effect, ViewChild, input, output } from '@angular/core';
 import * as d3 from 'd3';
 import { LineChartData } from '../../../core/types/types';
 
