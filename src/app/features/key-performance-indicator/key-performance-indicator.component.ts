@@ -12,6 +12,11 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
 })
 export class KeyPerformanceIndicatorComponent {
+  /**
+   * DESCRIPTION :
+   * - Component displays key performance indicators.
+   * - Using store computed signals for showing the indicators
+   */
   store = inject(GlobalStore);
 
   performanceIndicators: any;

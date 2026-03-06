@@ -10,5 +10,8 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './main-layout.component.css',
 })
 export class MainLayout {
-
+ /**
+   * DESCRIPTION :
+   * - Main layout renders the sidenav, navbar and dashboar components
+   */
 }

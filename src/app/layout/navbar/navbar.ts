@@ -10,5 +10,11 @@ import { MatBadgeModule } from '@angular/material/badge';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-
+  /**
+   * DESCRIPTION :
+   * - Dummy navbar component
+   * - Future scope :
+   *    -- RBAC Guard can be utilized here for access control
+   *    -- More new sections for navigation
+   */
 }

@@ -24,6 +24,13 @@ import { FORM_VALIDATION_MESSAGES } from '../../shared/constants/constants';
   styleUrl: './customer-form.component.css',
 })
 export class CustomerFormComponent implements OnInit {
+
+  /**
+   * DESCRIPTION :
+   * - Component provides form for adding new customer in data table
+   * - Using reactive forms
+   * - On submit updating the customer store to show data in data table
+   */
   ngOnInit(): void {}
 
   private fb = inject(FormBuilder);
@@ -44,12 +51,10 @@ export class CustomerFormComponent implements OnInit {
       this.customerForm.markAllAsTouched();
       return;
     }
-
     const customer: Customer = {
       id: crypto.randomUUID(),
       ...this.customerForm.getRawValue(),
     } as Customer;
-
     this.dialogRef.close(customer);
   }
 

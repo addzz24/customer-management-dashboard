@@ -15,7 +15,7 @@
         <div class="p-2 sidebar-item flex items-center gap-2" (click)="onItemClick(item)">
           <mat-icon class="sidebar-icon" [fontIcon]="item.icon"></mat-icon>
           @if (isOpen()) {
-            <span>{{ item.label }}</span>
+            <span [class]="isActivated(item.route) ? 'text-primary' : ''">{{ item.label }}</span>
           }
         </div>
       }

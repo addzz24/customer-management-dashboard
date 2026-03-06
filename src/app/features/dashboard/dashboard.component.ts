@@ -6,24 +6,26 @@ import { DISPLAYED_COLUMNS, FILTERS_CONFIG } from '../../shared/constants/consta
 import { TableFilterConfig } from '../../core/types/types';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomerFormComponent } from '../customer-form/customer-form.component';
-import { PieChartComponent } from '../../shared/components/pie-chart/pie-chart.component';
-import { BarChartComponent } from '../../shared/components/bar-chart/bar-chart.component';
-import { LineChartComponent } from '../../shared/components/line-chart/line-chart.component';
 import { KeyPerformanceIndicatorComponent } from '../key-performance-indicator/key-performance-indicator.component';
+import { AnalyticsComponent } from "../analytics/analytics.component";
 
 @Component({
   selector: 'app-dashboard',
   imports: [
     KeyPerformanceIndicatorComponent,
     DataTableComponent,
-    PieChartComponent,
-    BarChartComponent,
-    LineChartComponent,
-  ],
+    AnalyticsComponent
+],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
+  /**
+   * DESCRIPTION :
+   * - Component rendering aroud kpi, data-table for customers and analystics component
+   * - Utilized signals hevily for the local state to share with child components
+   * - holds to flags which configures the data tables functionalities like search, sort etc.
+   */
   customers: Customer[] = [];
   displayedColumns: string[] = DISPLAYED_COLUMNS;
   filtersConfig: TableFilterConfig[] = FILTERS_CONFIG;
@@ -33,10 +35,6 @@ export class DashboardComponent implements OnInit {
   enableSearch = signal(true);
   enableFilters = signal(true);
   chartFilter = signal<any>(null);
-
-  public spendByCategory = () => this.store.spendByCategory();
-  public spendByStatus = () => this.store.spendByStatus();
-  public spendTrendByDate = () => this.store.spendTrendByDate();
 
   private store = inject(GlobalStore);
   private dialog = inject(MatDialog);
@@ -65,34 +63,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-
-  onStatusFilter(status: string) {
-    const current = this.chartFilter();
-
-    if (current?.status === status) {
-      this.chartFilter.set(null);
-    } else {
-      this.chartFilter.set({ status });
-    }
-  }
-
-  onCategoryFilter(category: string) {
-    const current = this.chartFilter();
-
-    if (current?.category === category) {
-      this.chartFilter.set(null);
-    } else {
-      this.chartFilter.set({ category });
-    }
-  }
-
-  onDateFilter(startDate: string) {
-    const current = this.chartFilter();
-
-    if (current?.startDate === startDate) {
-      this.chartFilter.set(null);
-    } else {
-      this.chartFilter.set({ startDate });
-    }
+  setChartFilter(filter: any){
+      this.chartFilter.set(filter)
   }
 }
