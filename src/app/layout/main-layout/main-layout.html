@@ -1,12 +1,11 @@
-<div class="flex h-screen w-full">
+<div class="flex h-screen w-full overflow-hidden">
   <app-sidebar />
 
-  <div class="flex flex-col flex-1">
+  <div class="flex flex-col flex-1 min-w-0">
     <app-navbar />
 
-    <main class="flex-1 p-6 bg-gray-100 overflow-auto">
+    <main class="flex-1 p-6 bg-gray-100 overflow-x-hidden">
       <router-outlet></router-outlet>
     </main>
-
   </div>
 </div>

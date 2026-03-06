@@ -57,4 +57,8 @@ export class Dashboard implements OnInit {
       }
     });
   }
+
+  onLineChartDateClick(event:any){
+    console.log("onLineChartDateClick", event)
+  }
 }

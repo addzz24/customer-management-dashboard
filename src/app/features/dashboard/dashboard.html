@@ -2,15 +2,12 @@
 <app-key-performance-indicator />
 
 <!-- Charts -->
-<div class="flex flex-col gap-6 mt-6">
-  <!-- Pie And Line Graph -->
-
+<div class="flex flex-col gap-6 mt-6 overflow-x-hidden">
   <div class="bg-white rounded-xl shadow p-4">
     <h3 class="text-lg font-semibold mb-3">Spend Trend</h3>
-    <app-line-chart [data]="spendTrendByDate()"> </app-line-chart>
+    <app-line-chart [data]="spendTrendByDate()" (dateClick)="onLineChartDateClick($event)"> </app-line-chart>
   </div>
 
-  <!-- Pie And Bar Graph -->
   <div class="flex gap-6">
     <div class="bg-white rounded-xl shadow p-4 flex-1">
       <h3 class="text-lg font-semibold mb-3">Spend by Status</h3>

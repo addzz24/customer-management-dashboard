@@ -18,3 +18,8 @@ export type TableFilters  = {
   startDate?: string;
   endDate?: string;
 }
+
+export type LineChartData = {
+  date: string;
+  amount: number
+}
