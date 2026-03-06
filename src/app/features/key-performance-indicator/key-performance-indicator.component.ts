@@ -3,10 +3,11 @@ import { CardComponent } from '../../shared/components/card/card.component';
 import { GlobalStore } from '../../store/global/global.store';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltip } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-key-performance-indicator',
-  imports: [CardComponent, CommonModule, MatIconModule],
+  imports: [CardComponent, CommonModule, MatIconModule, MatTooltip],
   templateUrl: './key-performance-indicator.component.html',
   styleUrl: './key-performance-indicator.component.css',
   standalone: true,
@@ -43,24 +44,28 @@ export class KeyPerformanceIndicatorComponent {
         value: totalCustomers,
         icon: 'people',
         trend: ((completed - pending) / totalOrders) * 100,
+        tooltipText: 'Total number of customers currently stored in the system. This helps track customer growth.'
       },
       {
         name: 'Spend',
         value: `${totalSpend} ₹`,
         icon: 'monetization_on',
         trend: (totalSpend / 10000) * 5,
+        tooltipText: 'Total spending made by all customers. Useful for understanding revenue and financial performance.'
       },
       {
         name: 'Completed Orders',
         value: completed,
         icon: 'check_circle',
         trend: orderTrend,
+        tooltipText: 'Number of successfully completed customer orders. Indicates fulfillment performance.'
       },
       {
         name: 'Pending Orders',
         value: pending,
         icon: 'pending',
         trend: -(pending / totalOrders) * 100,
+        tooltipText: 'Number of successfully completed customer orders. Indicates fulfillment performance.'
       },
     ];
   }

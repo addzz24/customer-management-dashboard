@@ -1,7 +1,7 @@
 <div class="flex flex-wrap gap-6 mt-6">
   @for (indicator of performanceIndicators; track indicator.name) {
     <app-card class="flex-1 min-w-65">
-      <mat-icon card-icon class="text-2xl">
+      <mat-icon card-icon class="text-2xl cursor-pointer" [matTooltip]="indicator.tooltipText" matTooltipPosition="right">
         {{ indicator.icon }}
       </mat-icon>
 
