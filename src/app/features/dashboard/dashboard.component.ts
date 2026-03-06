@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.store.loadCustomers();
+    console.log(this.store.filteredCustomers, this.store.customers())
   }
 
   openCustomerModal() {

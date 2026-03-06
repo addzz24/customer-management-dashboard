@@ -26,7 +26,7 @@ import { TableSearchComponent } from '../table-search/table-search.component';
 
 import { TableFiltersComponent } from '../table-filters/table-filters.component';
 import { TableFilters } from '../../../core/types/types';
-import { GlobalStore } from '../../../store/global/global.store'
+import { GlobalStore } from '../../../store/global/global.store';
 import { Customer } from '../../../core/models/model';
 
 @Component({
@@ -92,7 +92,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
   constructor() {
     effect(() => {
-      this.dataSource.data = this.data();
+      this.dataSource.data = this.store.filteredCustomers();
     });
 
     effect(() => {
@@ -103,7 +103,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
-    this.dataSource.data = this.data();
+    this.dataSource.data = this.store.filteredCustomers();
     this.dataPredicate();
   }
 
@@ -123,9 +123,9 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   }
 
   onSearch(value: string) {
-    this.filters.search = value.toLowerCase();
-
-    this.applyFilters();
+    this.store.updateFilters({
+      search: value.toLowerCase(),
+    });
   }
 
   onApplyFilters(filters: any) {
@@ -139,6 +139,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
   applyFilters() {
     this.dataSource.filter = JSON.stringify(this.filters);
+     this.store.updateFilters(this.filters);
   }
 
   resetFilters() {
@@ -152,6 +153,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
     this.dataSource.filter = JSON.stringify(this.filters);
     this.filters.search = '';
+    this.store.resetFilters();
   }
 
   deleteCustomer(id: string) {
