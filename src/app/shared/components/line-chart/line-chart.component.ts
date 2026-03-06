@@ -9,14 +9,12 @@ import { LineChartData } from '../../../core/types/types';
   styleUrl: './line-chart.component.css',
 })
 export class LineChartComponent {
-
   data = input<LineChartData[]>([]);
   dateClick = output<string>();
 
   selectedDate: string | null = null;
 
-    @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
-
+  @ViewChild('chart', { static: true }) chartContainer!: ElementRef;
 
   constructor() {
     effect(() => {
@@ -120,9 +118,10 @@ export class LineChartComponent {
         this.selectedDate = d.date;
         this.dateClick.emit(d.date);
         svg
-          .selectAll('circle')
-          .attr('fill', (c: any) => (c.date === this.selectedDate ? '#22c55e' : '#6366f1'))
-          .attr('r', (c: any) => (c.date === this.selectedDate ? 7 : 5));
+        .selectAll('circle')
+        .attr('fill', (c: any) => (c.date === this.selectedDate ? '#22c55e' : '#6366f1'))
+        .attr('r', (c: any) => (c.date === this.selectedDate ? 7 : 5));
+        tooltip.style('opacity', 0);
       })
       .on('mouseenter', (event: any, d: any) => {
         hoverLine.attr('x1', x(d.date)!).attr('x2', x(d.date)!).style('opacity', 1);

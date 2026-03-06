@@ -45,7 +45,7 @@ export class PieChartComponent {
     const color = d3
       .scaleOrdinal()
       .domain(this.data().map((d) => d.status))
-      .range(['#ef4444', '#10b981']);
+      .range(['#10b981', '#ef4444']);
 
     const tooltip = d3
       .select(element)
