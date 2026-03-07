@@ -33,7 +33,6 @@ export class Sidebar implements OnInit {
 
   ngOnInit(): void {
      this.currentUrl = this.router.url;
-     console.log(this.currentUrl)
   }
 
   toggleSidebar() {

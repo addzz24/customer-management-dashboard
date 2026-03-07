@@ -16,6 +16,15 @@ export const routes: Routes = [
           roles: ['admin', 'manager'], // allowed roles
         },
       },
+         {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+      {
+        path: '**',
+        redirectTo: 'dashboard',
+      },
     ],
   },
 ];
