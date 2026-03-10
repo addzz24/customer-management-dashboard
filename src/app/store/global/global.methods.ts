@@ -1,12 +1,13 @@
 import { Customer } from '../../core/models/model';
 import { INITIAL_CUSTOMERS } from '../../shared/constants/customers';
+import { STORAGE_KEY } from './global.store';
 
 export const globalMethods = (store: any) => ({
   /* ADD CUSTOMER */
   addCustomer(customer: Customer) {
     store.customers.update((list: Customer[]) => {
       const updated = [...list, customer];
-      localStorage.setItem('customers', JSON.stringify(updated));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
       return updated;
     });
   },
@@ -15,7 +16,7 @@ export const globalMethods = (store: any) => ({
   deleteCustomer(id: string) {
     store.customers.update((list: Customer[]) => {
       const updated = list.filter((c) => c.id !== id);
-      localStorage.setItem('customers', JSON.stringify(updated));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
       return updated;
     });
   },
@@ -41,7 +42,7 @@ export const globalMethods = (store: any) => ({
 
   /* LOADING INITIAL DATA FROM STORAGE */
   loadCustomers() {
-    const stored = localStorage.getItem('customers');
+    const stored = localStorage.getItem(STORAGE_KEY);
 
     if (stored) {
       store.customers.set(JSON.parse(stored));
@@ -51,6 +52,6 @@ export const globalMethods = (store: any) => ({
     const initialCustomers: Customer[] = INITIAL_CUSTOMERS;
 
     store.customers.set(initialCustomers);
-    localStorage.setItem('customers', JSON.stringify(initialCustomers));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(initialCustomers));
   },
 });

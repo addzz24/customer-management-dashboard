@@ -9,11 +9,7 @@ export const globalComputed = (state: any) => {
     if (filters.search) {
       const search = filters.search.toLowerCase();
 
-      data = data.filter(
-        (c: any) =>
-          c.name.toLowerCase().includes(search) ||
-          c.email.toLowerCase().includes(search)
-      );
+      data = data.filter((c: any) => Object.values(c).join(' ').toLowerCase().includes(search));
     }
 
     if (filters.status) {

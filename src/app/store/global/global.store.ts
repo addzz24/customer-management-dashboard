@@ -4,7 +4,7 @@ import { initialGlobalState } from './global.state'
 import { globalComputed } from './global.computed'
 import { globalMethods } from './global.methods'
 
-const STORAGE_KEY = 'customers';
+export const STORAGE_KEY = 'customers';
 
 export const GlobalStore = signalStore(
   { providedIn: 'root' },
