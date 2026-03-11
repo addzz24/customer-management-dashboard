@@ -39,7 +39,7 @@ export class CustomerFormComponent implements OnInit {
   customerForm = this.fb.nonNullable.group({
     name: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(3)]),
     email: this.fb.nonNullable.control('', [Validators.required, Validators.email]),
-    mobile: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(10)]),
+    mobile: this.fb.nonNullable.control('', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]),
     category: this.fb.nonNullable.control('', Validators.required),
     amount: this.fb.nonNullable.control(0, Validators.required),
     date: this.fb.nonNullable.control('', Validators.required),
