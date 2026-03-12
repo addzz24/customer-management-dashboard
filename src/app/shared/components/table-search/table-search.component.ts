@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-table-search',
@@ -21,7 +22,17 @@ export class TableSearchComponent {
   search = signal('');
   searchChange = output<string>();
 
+  searchSub$ = new Subject()
+
+  constructor(){
+    this.searchSub$.pipe(
+      debounceTime(400)
+    ).subscribe((value:any)=>{
+       this.searchChange.emit(value);
+    })
+  }
+
   onSearch() {
-    this.searchChange.emit(this.search());
+   this.searchSub$.next(this.search())
   }
 }

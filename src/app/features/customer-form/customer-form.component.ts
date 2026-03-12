@@ -33,8 +33,8 @@ export class CustomerFormComponent implements OnInit {
    */
   ngOnInit(): void {}
 
-  private fb = inject(FormBuilder);
-  private dialogRef = inject(MatDialogRef<CustomerFormComponent>);
+  fb = inject(FormBuilder);
+  dialogRef = inject(MatDialogRef<CustomerFormComponent>);
 
   customerForm = this.fb.nonNullable.group({
     name: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(3)]),

@@ -7,10 +7,7 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
-  protected readonly title = signal('management-dashboard');
-
-  ngOnInit(): void {
-  }
+export class App {
+  readonly title = signal('management-dashboard');
 }
 

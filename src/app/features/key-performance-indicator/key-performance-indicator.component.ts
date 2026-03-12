@@ -43,7 +43,7 @@ export class KeyPerformanceIndicatorComponent {
         name: 'Customers',
         value: totalCustomers,
         icon: 'people',
-        trend: ((completed - pending) / totalOrders) * 100,
+        trend: totalOrders ? ((completed - pending) / totalOrders) * 100 : 0,
         tooltipText: 'Total number of customers currently stored in the system. This helps track customer growth.'
       },
       {
@@ -64,7 +64,7 @@ export class KeyPerformanceIndicatorComponent {
         name: 'Pending Orders',
         value: pending,
         icon: 'pending',
-        trend: -(pending / totalOrders) * 100,
+        trend: totalOrders ? (pending / totalOrders) * 100 : 0,
         tooltipText: 'Number of successfully completed customer orders. Indicates fulfillment performance.'
       },
     ];
